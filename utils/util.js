@@ -1,6 +1,7 @@
 const Util = {};
 
 
+// API Response Master Method
 Util.apiResponse = (
     res,
     err, 
@@ -18,6 +19,7 @@ Util.apiResponse = (
     })
 }
 
+// API Response Success Message
 Util.apiSuccessMessage = {
     USER_CREATED: "User Successfully Created!",
     USERS_INSIRTED: "Users Succesfully Inserted!",
@@ -26,6 +28,7 @@ Util.apiSuccessMessage = {
     USER_DELETED: "User Succesfully Deleted!",
 }
 
+// API Response Error Message
 Util.apiErrorMessage = {
     USER_NOT_FOUND: "User Not Found!"
 }
