@@ -4,6 +4,8 @@ const app = express();
 const mongoose = require("mongoose");
 const port = process.env.APP_PORT || 3000; // ENV Config
 const userRouter = require('./routes/userRouter');
+const categoryRouter = require('./routes/categoryRouter');
+const postRouter = require('./routes/postRouter');
 
 
 // USE JSON in APP 
@@ -27,6 +29,14 @@ app.get('/', (req, res) => {
 
 // User Router Here
 app.use('/user', userRouter)
+
+// Post Category Router Here
+app.use('/category', categoryRouter)
+
+// Post Router Here
+app.use('/post', postRouter)
+
+
 
 // Server Listening
 app.listen(port, ()=>{

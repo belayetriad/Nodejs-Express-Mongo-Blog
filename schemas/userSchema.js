@@ -23,6 +23,13 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    token: {
+        type: String
+    },
+    status: {
+        type: Boolean,
+        default: true
+    },
     careatedAt: {
         type: Date,
         default: new Date()
