@@ -1,32 +1,33 @@
-const jwt = require('jsonwebtoken');
-const config = process.env;
-
+const mongoose = require('mongoose');  
+const UserSchema = require('../schemas/userSchema');
+const User = mongoose.model('User', UserSchema);
 
 const verifyToken = (req, res, next) => { 
     
     // Get Authorization Token
-    const authorization = req.headers.authorization
+    const authHeader = req.headers['authorization'];
+
+    const token = authHeader.split(' ')[1]; 
      
     // Check Token Here
-    if(!authorization){
+    if(!token){
         return res.status(403).json({
-            message: "You are not logedin!"
+            message: "You are not Logged In!"
         })
     }
 
-    try{
-        // Verify Token Here
-        const token = authorization.split(' ')[1]; 
-        const decoded = jwt.verify(token, config.TOKEN_KEY);
-        req.user = decoded;
-    }catch(err) {
-        return res.status(401).json({
-            message: 'Invalid Token!'
+    User.findByToken(token,  (err, user)=>{
+        if(err) throw err;
+        if(!user) return res.status(403).json({
+            message: "Your Token is invalid!"
         })
-    }
 
-    // Process for Next
-    return next();
+        req.token = token;
+        req.user = user;
+
+        // Process for Next
+        next();
+    }) 
 }
 
 module.exports = verifyToken;
