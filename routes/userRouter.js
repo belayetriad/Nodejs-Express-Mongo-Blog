@@ -5,7 +5,7 @@ const userController = require('../controllers/userController');
 
 // This is Guest Route
 userRouter.post('/login', (req, res) => { userController.login(req, res) } )
-
+userRouter.post('/logout', auth, (req, res) => { userController.logout(req, res) })
 
 // This is Protected Route
 userRouter.get('/', auth, (req, res) => { userController.getAll(req, res)})

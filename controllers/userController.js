@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const UserSchema = require('../schemas/userSchema');
 const bcrtpt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Util = require('../utils/util')
+const config = process.env;
+const UserSchema = require('../schemas/userSchema');
 const userController = {};
 const User = mongoose.model('User', UserSchema);
 
@@ -31,11 +32,19 @@ userController.login = async (req, res) => {
                     expiresIn: "2h"
                 }
             )
-            //Send User data
-            return res.status(200).json({
-                message: "You are successfully logedin",
-                token: token
-            });
+
+            user.token = token;
+            user.save((err, user)=> {
+                if(err){
+                    res.status(500).send(err)
+                }else{
+                    res.status(200).json({
+                        message: "You are successfully Logged In",
+                        token: token
+                    });
+                }
+            }) 
+            return;
         }
 
         res.status(400).json({
@@ -45,6 +54,31 @@ userController.login = async (req, res) => {
     }catch(err) {
         res.status(500).json(err)
     }
+}
+
+
+userController.logout = (req, res) => { 
+
+    const user = req.user;
+    user.token = '';
+    user.save((err, user)=> {
+            if(err) return res.status(500).json(err)
+            else{
+                res.status(200).json({
+                    message: "Your have been Logged Out"
+                })
+            }
+        })
+
+    // req.user.deleteToken(req.token, (err, user)=> {
+    //     if(err) return res.status(500).json(err)
+    //     else{
+    //         res.status(200).json({
+    //             message: "Your have been Logged Out"
+    //         })
+    //     }
+    // })
+     
 }
 
 
