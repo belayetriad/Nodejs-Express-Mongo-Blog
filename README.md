@@ -1,4 +1,4 @@
-# [HTML5 Boilerplate](https://github.com/obakriad/Nodejs-Express-Mongo-Blog/)
+# [Nodejs Express Mongo Blog](https://github.com/obakriad/Nodejs-Express-Mongo-Blog/)
 
 [![Build status](https://github.com/obakriad/Nodejs-Express-Mongo-Blog/workflows/Build%20status/badge.svg)](https://github.com/obakriad/Nodejs-Express-Mongo-Blog/actions?query=workflow%3A%22Build+status%22+branch%3Amain)
 [![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/obakriad/Nodejs-Express-Mongo-Blog/blob/main/LICENSE.txt)
