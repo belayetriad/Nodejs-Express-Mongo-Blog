@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const CategorySchema = require('../schemas/CategorySchema');
+const CategorySchema = require('../schemas/categorySchema'); 
 const Util = require('../utils/util')
 const categoryController = {};
 const Category = mongoose.model('Category', CategorySchema);

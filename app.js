@@ -7,12 +7,13 @@ const userRouter = require('./routes/userRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const postRouter = require('./routes/postRouter');
 
-
+console.log()
 // USE JSON in APP 
 app.use(express.json())
 
 // Mongoose Connection Here
-mongoose.connect(process.env.MONGODB_URL+process.env.MONGODB_DATABASE)
+// mongoose.connect(process.env.MONGODB_URL+process.env.MONGODB_DATABASE) //For Local 
+mongoose.connect('mongodb+srv://riadblog:TryeeuuPRaavJuIe@cluster0.rdngeet.mongodb.net/?retryWrites=true&w=majority')  
         .then(()=> {
             console.log("Succesfully DB Conected!")
         })

@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const Schema = mongoose.Schema;
 const config = process.env;
 
-const UserSchema = new Schema({
+const userSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -38,7 +38,7 @@ const UserSchema = new Schema({
     }
 })
 
-UserSchema.statics.findByToken = function(token, cb){
+userSchema.statics.findByToken = function(token, cb){
     const user = this;
 
     jwt.verify(token, config.TOKEN_KEY, function(err, decode) { 
@@ -50,7 +50,7 @@ UserSchema.statics.findByToken = function(token, cb){
     })
 }
 
-UserSchema.method.deleteToken = function(token, cb){
+userSchema.method.deleteToken = function(token, cb){
     user = this;
 
     user.update({$unset: {token: 1}}, function(err, user){
@@ -60,4 +60,4 @@ UserSchema.method.deleteToken = function(token, cb){
 }
 
 
-module.exports = UserSchema;
+module.exports = userSchema;

@@ -2,7 +2,7 @@
   "name": "first-express-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",

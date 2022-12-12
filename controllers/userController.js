@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrtpt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Util = require('../utils/util')
 const config = process.env;
@@ -21,7 +21,7 @@ userController.login = async (req, res) => {
 
         const user = await User.findOne({email});
          
-        if(user && (await bcrtpt.compare(password, user.password))){
+        if(user && (await bcrypt.compare(password, user.password))){
             const token = jwt.sign(
                 {
                     user_id: user._id, 
@@ -90,9 +90,16 @@ userController.getAll = (req, res) => {
 }
 
 // Create User Controller
-userController.create = async (req, res) => {
+userController.create = async (req, res) => { 
     const newUser = User(req.body)
-    newUser.password = bcrtpt.hashSync(req.body.password, 10) ;
+    newUser.password = bcrypt.hashSync(req.body.password, 10) ;
+
+    // bcrypt.hash(newUser.password, config.TOKEN_KEY, function(err, hash) {
+    //     if (err) return err;
+
+    //    return newUser.password = hash; 
+    // });
+    
     await newUser.save((err, user)=>{
         if(user){
             user = user.toObject();

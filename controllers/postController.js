@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const PostSchema = require('../schemas/PostSchema');
+const PostSchema = require('../schemas/postSchema');
 const Util = require('../utils/util')
 const postController = {};
-const Post = mongoose.model('Post', PostSchema);
+const Post = mongoose.model('Post',PostSchema);
 
  
 // Get All Post Controller
